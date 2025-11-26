@@ -1,5 +1,5 @@
 # Arduino WiFi credentials - DO NOT COMMIT
-config.h
+Aranet4_Thin_Client/config.h
 
 # Build artifacts
 build/

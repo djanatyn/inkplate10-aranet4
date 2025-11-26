@@ -1,5 +1,5 @@
 /*
-   Aranet4 WiFi Display for Inkplate10
+   Aranet4 Thin Client for Inkplate10
 
    Connects to a local HTTP server serving Aranet4 sensor data
    and displays it on the Inkplate10 e-paper display.
@@ -45,7 +45,7 @@ SensorData currentData = {0, 0.0, 0, 0, 0, "", false};
 
 void setup() {
     Serial.begin(115200);
-    Serial.println("Aranet4 WiFi Display Starting...");
+    Serial.println("Aranet4 Thin Client Starting...");
 
     // Initialize display
     display.begin();

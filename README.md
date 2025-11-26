@@ -124,19 +124,24 @@ Endpoints:
 }
 ```
    
-## setup (arduino client)
+## setup (arduino thin client)
 
 ```bash
 # install dependencies with arduino-cli
 arduino-cli lib install ArduinoJson
+
 # setup configuration file
+cd Aranet4_Thin_Client
 cp config.h.example config.h
-vim config.h
-# compile and upload
-arduino-cli compile \
-  --upload \
-  -p /dev/cu.usbserial-XXXXX # replace with your serial device \ 
+vim config.h  # edit with your WiFi credentials and server IP
+
+# compile and upload (from project root)
+cd ..
+arduino-cli compile --upload \
+  -p /dev/cu.usbserial-XXXXX \
   --fqbn Inkplate_Boards:esp32:Inkplate10:UploadSpeed=115200 \
+  Aranet4_Thin_Client
+
 # monitor on serial after successful upload
 arduino-cli monitor -p /dev/cu.usbserial-XXXXX -c baudrate=115200
 ```
