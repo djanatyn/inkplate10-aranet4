@@ -3,6 +3,7 @@ config.h
 
 # Build artifacts
 build/
+target/
 *.hex
 *.elf
 *.bin
