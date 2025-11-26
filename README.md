@@ -146,6 +146,32 @@ arduino-cli compile --upload \
 arduino-cli monitor -p /dev/cu.usbserial-XXXXX -c baudrate=115200
 ```
 
+## debugging
+
+```
+❯ arduino-cli monitor -p /dev/cu.usbserial-214430 -c baudrate=115200
+Monitor port settings:
+  baudrate=115200
+  bits=8
+  dtr=on
+  parity=none
+  rts=on
+  stop_bits=1
+
+Connecting to /dev/cu.usbserial-214430. Press CTRL-C to exit.
+ets Jun  8 2016 00:22:57
+
+rst:Aranet4 Thin Client Starting...
+Wavefrom load failed! Upload neFetching sensor data...
+Requesting: http://192.168.1.210:3000/api/sensor
+Response received:
+{"co2":631,"temperature":21.65,"humidity":51,"pressure":974,"battery":73,"timestamp":1764128419,"status":"GREEN"}
+Fetching sensor data...
+Requesting: http://192.168.1.210:3000/api/sensor
+Response received:
+{"co2":631,"temperature":21.65,"humidity":51,"pressure":974,"battery":73,"timestamp":1764128456,"status":"GREEN"}
+```
+
 ---
 
 ## built with
