@@ -2,6 +2,10 @@
 
 rust server querying aranet4, with thin display client on inkplate10
 
+<p align="center">
+  <img src="https://github.com/djanatyn/inkplate10-aranet4/raw/main/aranet4.jpg" alt="aranet4 device next to inkplate10 display">
+</p>
+
 ## setup (rust server)
 
 ### identifying your service ID
