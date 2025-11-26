@@ -1,0 +1,8 @@
+# Arduino WiFi credentials - DO NOT COMMIT
+config.h
+
+# Build artifacts
+build/
+*.hex
+*.elf
+*.bin
