@@ -16,6 +16,7 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
+#include <time.h>
 #include "config.h"
 
 // API endpoint
@@ -37,11 +38,12 @@ struct SensorData {
     int humidity;
     int pressure;
     int battery;
+    unsigned long timestamp;
     String status;
     bool valid;
 };
 
-SensorData currentData = {0, 0.0, 0, 0, 0, "", false};
+SensorData currentData = {0, 0.0, 0, 0, 0, 0, "", false};
 
 void setup() {
     Serial.begin(115200);
@@ -105,13 +107,13 @@ void connectWiFi() {
 void fetchAndDisplay() {
     Serial.println("Fetching sensor data...");
 
+    lastUpdate = millis();  // Update timestamp first, before displaying
+
     if (fetchSensorData()) {
         displayData();
     } else {
         displayError();
     }
-
-    lastUpdate = millis();
 }
 
 bool fetchSensorData() {
@@ -153,6 +155,7 @@ bool fetchSensorData() {
         currentData.humidity = doc["humidity"];
         currentData.pressure = doc["pressure"];
         currentData.battery = doc["battery"];
+        currentData.timestamp = doc["timestamp"];
         currentData.status = doc["status"].as<String>();
         currentData.valid = true;
 
@@ -241,6 +244,10 @@ void displayData() {
 
     // Footer
     display.setTextSize(2);
+    display.setCursor(100, 720);
+    display.print("Last reading: ");
+    display.print(formatTimestamp(currentData.timestamp));
+
     display.setCursor(100, 750);
     display.print("WiFi: ");
     display.print(WiFi.localIP());
@@ -295,6 +302,16 @@ String getCO2Quality(int co2) {
     if (co2 < 1000) return "Fair";
     if (co2 < 1400) return "Poor";
     return "Bad";
+}
+
+String formatTimestamp(unsigned long timestamp) {
+    time_t rawtime = (time_t)timestamp;
+    struct tm* timeinfo = localtime(&rawtime);
+
+    char buffer[64];
+    // Format: "Nov 26 02:54:51"
+    strftime(buffer, sizeof(buffer), "%b %d %H:%M:%S", timeinfo);
+    return String(buffer);
 }
 
 void drawBatteryIcon(int x, int y, int level) {
