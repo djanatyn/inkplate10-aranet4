@@ -305,8 +305,9 @@ String getCO2Quality(int co2) {
 }
 
 String formatTimestamp(unsigned long timestamp) {
-    time_t rawtime = (time_t)timestamp;
-    struct tm* timeinfo = localtime(&rawtime);
+    // Apply timezone offset
+    time_t rawtime = (time_t)timestamp + TIMEZONE_OFFSET;
+    struct tm* timeinfo = gmtime(&rawtime);
 
     char buffer[64];
     // Format: "Nov 26 02:54:51"

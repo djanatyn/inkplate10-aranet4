@@ -12,4 +12,12 @@ const char* WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
 const char* SERVER_HOST = "192.168.1.100";  // Your server's IP
 const int SERVER_PORT = 3000;
 
+// Timezone offset from UTC in seconds
+// Examples:
+//   EST (UTC-5):  -5 * 3600 = -18000
+//   EDT (UTC-4):  -4 * 3600 = -14400
+//   PST (UTC-8):  -8 * 3600 = -28800
+//   CET (UTC+1):   1 * 3600 =   3600
+const long TIMEZONE_OFFSET = -18000;  // Default: EST (UTC-5)
+
 #endif
