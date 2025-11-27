@@ -205,12 +205,13 @@ void displayData() {
 
     yPos += spacing + 20;
 
-    // Temperature
+    // Temperature (converted to Fahrenheit)
     display.setCursor(labelX, yPos);
     display.print("Temperature:");
     display.setCursor(valueX, yPos);
-    display.print(currentData.temperature, 1);
-    display.print(" C");
+    float tempF = currentData.temperature * 9.0 / 5.0 + 32.0;
+    display.print(tempF, 1);
+    display.print(" F");
 
     yPos += spacing;
 
